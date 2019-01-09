@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ <mapper namespace="com.xms.dao.MainDao">
+ 	<!-- 查询全部课程方向 -->
+ 	<select id="findAllCourseDirection" resultType="com.xms.entity.CourseDirection">
+ 		select * from xc_course_direction
+ 	</select>
+ 	<select id="findAllDemoCourse" resultType="com.xms.entity.Course">
+ 		select * from xc_course where content_id=2 and price>0
+ 	</select>
+ 	<!-- 查询全部新手入门课程 -->
+ 	<select id="findNewCourse" resultType="com.xms.entity.Course">
+ 		select * from xc_course where content_id=1 and price>0
+ 	</select>
+ 	
+ 	<select id="findCourse"  resultType="com.xms.entity.Course" >
+ 		select * from xc_course where content_id=#{content_id} and price>0
+ 	</select>
+ 	
+ 	<select id="findCourseContentByCourseDirectionId" parameterType="integer"  resultType="com.xms.entity.CourseContent">
+ 		select distinct xcc.* from xc_course_direction_content xcdc join xc_course_content xcc on xcdc.cc_id = xcc.id 
+ 		<where >
+ 			<if test="courseDirectionId!=0">
+ 				xcdc.cd_id = #{courseDirectionId}
+ 			</if>
+ 		</where>
+ 	</select>
+ 	
+ 	<!-- 根据课程方向ID和课程内容ID查询对应课程 -->
+ 	<select id="findCourseByCourseDirectionIdAndCourseContentId" parameterType="java.util.Map" resultType="com.xms.entity.Course">
+ 		select * from xc_course 
+ 			<where>
+ 				<if test="courseDirectionId != 0">
+ 					direction_id = #{courseDirectionId}
+ 				</if>
+	 			<if test="courseContentId !=0">
+	 				and content_id = #{courseContentId}
+	 			</if>
+ 			</where>
+ 	</select>
+ 	
+ 	<select id="findCountsByCourseDirectionIdAndCourseContentId" parameterType="java.util.Map" resultType="integer">
+ 		select count(*) from xc_course 
+ 			<where>
+ 				<if test="courseDirectionId != 0">
+ 					direction_id = #{courseDirectionId}
+ 				</if>
+	 			<if test="courseContentId !=0">
+	 				and content_id = #{courseContentId}
+	 			</if>
+ 			</where>
+ 	</select>
+ 	
+ 	<select id="findCourseByCourseDirectionIdAndCourseContentIdAndPage" parameterType="java.util.Map" resultType="com.xms.entity.Course">
+ 		select * from xc_course 
+ 			<where>
+ 				<if test="courseDirectionId != 0">
+ 					direction_id = #{courseDirectionId}
+ 				</if>
+	 			<if test="courseContentId !=0">
+	 				and content_id = #{courseContentId}
+	 			</if>
+ 			</where>
+ 			<if test="page !=null">
+	 			limit #{page},#{pagsNums}
+	 		</if>
+	 		<if test="page ==null">
+	 			limit 0,#{pagsNums}
+	 		</if>
+ 	</select>
+ 	
+ 	<!-- 根据课程ID查询课程信息 -->
+ 	<select id="findCourseByCourseId" parameterType="integer" resultType="com.xms.entity.Course">
+ 		select * from xc_course where id = #{courseId}
+ 	</select>
+ 	
+ 	<select id="findCarByUserId" parameterType="integer" resultType="com.xms.entity.Car">
+ 		select * from xc_car where u_id = #{id}
+ 	</select>
+ 	
+ 	<insert id="saveCar" parameterType="com.xms.entity.Car" useGeneratedKeys="true" keyProperty="id">
+ 		insert into xc_car values(#{id},#{u_id})
+ 	</insert>
+ 	
+ 	<!-- 根据当前购物车ID查询此购物车中全部商品ID -->
+ 	<select id="findCourseIdByCarId" parameterType="integer" resultType="integer">
+ 		select xi.c_id from xc_car_item xci join xc_item xi on xci.i_id = xi.id where xci.c_id = #{id}
+ 	</select>
+ 	
+ 	<!-- 生成商品条目 -->
+ 	<insert id="saveItem" parameterType="com.xms.entity.Item" useGeneratedKeys="true" keyProperty="id">
+ 		insert into xc_item values(#{id},#{c_id},#{c_name},#{c_picture_url},#{c_price},#{add_time},#{remove_time})
+ 	</insert>
+ 	
+ 	<insert id="saveCarItem" parameterType="java.util.Map" >
+ 		insert into xc_car_item values(#{c_id},#{i_id})
+ 	</insert>
+ 	
+ 	<select id="findItemByUserId" parameterType="integer" resultType="com.xms.entity.Item">
+ 		select xi.* from xc_car xc join xc_car_item xci on xc.id = xci.c_id join xc_item xi on xci.i_id = xi.id where xc.u_id = #{id}
+ 	</select>
+ 	
+ 	<delete id="deleteCarItem" parameterType="integer">
+ 		delete from xc_car_item where i_id = #{id};
+ 	</delete>
+ 	<delete id="deleteItem" parameterType="integer">
+ 		delete from xc_item where id = #{id};
+ 	</delete>
+ 	
+ 	<select id="findItemByItemId" parameterType="integer" resultType="com.xms.entity.Item">
+ 		select * from xc_item where id = #{id}
+ 	</select>
+ 	
+    <insert id="saveOrder" parameterType="com.xms.entity.Order" useGeneratedKeys="true" keyProperty="id">
+ 		insert into xc_order values(#{id},#{u_id},#{order_time},#{total_price},#{pay_type})
+ 	</insert>
+ 	
+ 	<insert id="saveOrderItem" parameterType="java.util.Map" >
+ 		insert into xc_order_item values(#{orderId},#{itemId})
+ 	</insert>
+ 	
+ 	
+ </mapper>

@@ -1,0 +1,56 @@
+*{margin: 0;padding:0;}
+body{
+	background:#6599e4;
+	font-family: '微软雅黑';
+	font-size: 14px;
+	background: url(../images/login/bg.jpg) no-repeat  center;
+	background-attachment: fixed;
+	background-size:150%;
+
+}
+a{text-decoration: none;}
+a:hover{color: red;}
+.login_box{
+	width: 1000px;height: 520px;
+	overflow: hidden;
+	background: url(../images/login/left.png);
+	
+	position: fixed;
+	top:50%;margin-top: -260px;
+	left: 50%;margin-left: -500px;
+
+}
+
+.login_box .col_50{width: 50%;}
+.login_box .left{float:left;text-align: center;padding-top:120px;font-size: 40px;color: white; font-weight: normal;line-height: 100px;}
+.login_box .right{float: right;
+background: white;height: 490px;color: #999;padding-top: 30px;}
+
+.login_box .right .row_1{margin-left: 60px;width: 350px;margin-top: 8px;padding:4px 0;}
+.login_box .right .row_1 input{
+	border:none;border-bottom: 1px solid #ccc;
+	background: none;
+	font-size: 14px;
+	line-height: 46px;
+	outline: none;
+}
+.login_box .right .margin_40{margin-top: 50px;}
+.login_box .right .row_1 label{display: block;color: red;text-indent: 20px;height:36px;line-height:36px; }
+
+.login_box .right .row_350 input{width: 350px;}
+.login_box .right .row_210 input{width: 210px;}
+
+.login_box .right .row_1 input[data-name="uname"]{background: url(../images/login/icon_1.png) no-repeat 5px center;text-indent: 30px;}
+.login_box .right .row_1 input[data-name="upass"]{background: url(../images/login/icon_2.png) no-repeat 5px center;text-indent: 30px;}
+
+
+.color_999{color: #999;}
+.color_blue{color: #2391f2;}
+
+.login_box .right .row_1 .a_right{float: right}
+
+.login_box .right .row_1 input[type=submit]{width: 330px;height: 40px;line-height:40px;border-radius: 30px;background:#2391f2;border:none;color: white;margin-left:8px; }
+
+
+
+

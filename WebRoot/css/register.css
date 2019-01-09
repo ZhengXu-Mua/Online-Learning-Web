@@ -1,0 +1,25 @@
+body{
+	background: #edf1f2;
+}
+.head{height: 68px;background: white;padding-top: 15px;}
+.register_box{
+	background: white;margin-top: 30px;
+	padding-top: 30px;padding-bottom: 50px;
+}
+.register_box h3{
+	margin-left: 150px;
+	font-size: 14px;color: #000;font-style: normal;line-height: 30px;
+	width:100px;border-bottom:1px solid #2391f2;text-indent: 15px;
+
+}
+
+.register_box .rows{width: 434px;margin:8px  auto;}
+.register_box .rows label{color: #666;font-weight: bold;width: 80px;line-height:42px;display: inline-block;text-align: right;}
+.register_box .rows input{width: 336px;height: 42px;margin-left: 4px;color: #999;text-indent:20px;border:1px solid #999; }
+.register_box .rows input[data-title=ucode]{width: 228px;}
+.register_box .rows input[data-title=sendmess]{width: 100px;border:none;text-align: center;text-indent:0;background: #2391f2;color: #fff;font-size: 14px;}
+.register_box .rows input[data-title=submit]{width: 330px;height: 40px;line-height:40px;border-radius: 30px;background:#2391f2;border:none;color: white;margin-left:66px; font-size: 14px;}
+
+
+.register_box .rows p{margin-left: 90px;height:32px;line-height: 32px;color: red;}
+.foot{margin-top: 0;}

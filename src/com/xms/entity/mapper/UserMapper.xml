@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ <mapper namespace="com.xms.dao.UserDao">
+ 	<select id="findByEmail" resultType="com.xms.entity.User">
+ 		select * from xc_user where email=#{email}
+ 	</select>
+ 	
+ 	<insert id="save" parameterType="com.xms.entity.User" useGeneratedKeys="true" keyProperty="id">
+ 		insert into xc_user values(#{id},#{email},#{password},#{nickname},now())
+ 	</insert>
+ 	
+ </mapper>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
